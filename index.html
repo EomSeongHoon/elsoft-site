@@ -1,135 +1,377 @@
 <!DOCTYPE html>
 <!-- 이엘소프트(ELSoft) 회사 원페이지. elsoftlab.com 루트에 그대로 호스팅.
-     자체 완결형(외부 리소스 없음). 스토어/개인정보처리방침 링크는 확정 후 href 교체. -->
+     자체 완결형(외부 CDN 없음, 이미지는 /assets 로컬). 스토어 링크는 확정 후 href 교체. -->
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>이엘소프트 · ELSoft</title>
-<meta name="description" content="이엘소프트(ELSoft) — 아이와 부모를 위한 따뜻한 모바일 앱을 만듭니다.">
+<title>이엘소프트 ELSoft — AI 네이티브 소프트웨어 연구소</title>
+<meta name="description" content="이엘소프트(ELSoft) — 20년의 엔지니어링 경험 위에 AI 네이티브 개발 방식을 더한 소프트웨어 연구소. 신뢰성 있는 시스템과 자체 제품을 만듭니다.">
+<meta property="og:title" content="이엘소프트 ELSoft — AI 네이티브 소프트웨어 연구소">
+<meta property="og:description" content="20년의 엔지니어링 경험 위에 AI 네이티브 개발 방식을 더한 소프트웨어 연구소.">
+<meta property="og:image" content="https://elsoftlab.com/assets/hero.jpg">
+<meta property="og:type" content="website">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js')</script><!-- 리빌 숨김은 복원 수단(IO)이 있을 때만 -->
 <style>
   :root{
-    --ink:#232a33; --muted:#697586; --line:#e7ebf0; --bg:#ffffff; --soft:#f6f8fb;
-    --brand:#5b8def; --brand2:#f4a259; --accent:#7cc6a6; --radius:18px;
+    --bg:#fafbfe; --ink:#151b2c; --muted:#5c6784; --line:#e6eaf4; --soft:#f1f4fa;
+    --violet:#7c5cff; --cyan:#23b8de; --mint:#3bcf9a;
+    --aurora:linear-gradient(100deg,var(--violet),var(--cyan) 55%,var(--mint));
+    --radius:20px;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
+      "Apple SD Gothic Neo","Noto Sans KR","Segoe UI","Malgun Gothic",sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
   body{
-    margin:0; color:var(--ink); background:var(--bg);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",
-      "Noto Sans KR",Roboto,"Malgun Gothic",sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased;
+    margin:0; color:var(--ink); background:var(--bg); font-family:var(--sans);
+    line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  a{color:var(--brand); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:920px; margin:0 auto; padding:0 20px}
-  /* 헤더 */
-  header{padding:26px 0}
-  .brand{display:flex; align-items:center; gap:12px; font-weight:800; font-size:20px; letter-spacing:-.2px}
-  .logo{width:38px; height:38px; border-radius:11px;
-    background:linear-gradient(135deg,var(--brand),var(--accent));
-    display:grid; place-items:center; color:#fff; font-weight:800; font-size:17px}
-  /* 히어로 */
-  .hero{padding:48px 0 30px; text-align:center}
-  .hero h1{font-size:clamp(28px,5vw,42px); line-height:1.25; margin:0 0 14px; letter-spacing:-.5px}
-  .hero p{font-size:clamp(16px,2.4vw,19px); color:var(--muted); margin:0 auto; max-width:620px}
-  .tag{display:inline-block; margin-bottom:18px; padding:6px 14px; border-radius:999px;
-    background:var(--soft); color:var(--muted); font-size:13px; font-weight:600}
-  /* 섹션 */
-  section{padding:34px 0}
-  h2{font-size:22px; letter-spacing:-.3px; margin:0 0 18px}
-  .lead{color:var(--muted); margin:-8px 0 22px}
-  /* 앱 카드 */
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%; height:auto; display:block}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+
+  /* ── 유틸리티(랩 레지스터) ── */
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--aurora); border-radius:2px}
+  .grad{ /* 텍스트용은 대비 확보 위해 한 단계 어두운 스탑 사용 */
+    background:linear-gradient(100deg,#6a4df2,#1795b6 55%,#149b6c);
+    -webkit-background-clip:text; background-clip:text; color:transparent}
+
+  /* ── 헤더 ── */
+  header{
+    position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    background:rgba(250,251,254,.78); border-bottom:1px solid rgba(230,234,244,.7);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:800; font-size:18px; letter-spacing:-.02em}
+  .logo{
+    width:34px; height:34px; border-radius:10px; background:var(--aurora);
+    display:grid; place-items:center; color:#fff; font-weight:800; font-size:14px;
+    font-family:var(--mono); letter-spacing:0;
+  }
+  .brand small{color:var(--muted); font-weight:600; font-size:13px}
+  nav.menu{display:flex; gap:26px; font-size:14.5px; font-weight:600; color:var(--muted)}
+  nav.menu a:hover{color:var(--ink)}
+  @media(max-width:560px){
+    nav.menu{gap:13px; font-size:13px}
+    .brand{font-size:16px; gap:8px}
+    .brand small{display:none}
+    .logo{width:30px; height:30px; font-size:12.5px}
+  }
+
+  /* ── 히어로 ── */
+  .hero{position:relative; padding:92px 0 72px; overflow:hidden}
+  .hero-art{
+    position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:url("assets/hero.jpg") center top/cover no-repeat;
+    -webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 96%);
+    mask-image:linear-gradient(180deg,#000 30%,transparent 96%);
+    opacity:.9;
+  }
+  .hero-art::after{ /* 좌하단 텍스트 가독 보강 */
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(105deg,rgba(250,251,254,.92) 0%,rgba(250,251,254,.55) 45%,rgba(250,251,254,0) 75%);
+  }
+  .hero .eyebrow{margin-bottom:22px}
+  .hero h1{
+    margin:0 0 20px; font-size:clamp(34px,6vw,58px); line-height:1.18;
+    font-weight:800; letter-spacing:-.035em; max-width:640px;
+  }
+  .hero p.sub{max-width:560px; margin:0 0 30px; font-size:clamp(15.5px,2.2vw,18px); color:#3c465e}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.04em;
+    padding:7px 13px; border-radius:999px; color:#3c465e;
+    background:rgba(255,255,255,.6); border:1px solid var(--line);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  /* 로드 리빌 */
+  .hero .eyebrow,.hero h1,.hero .sub,.hero .chips{opacity:0; transform:translateY(14px);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1{animation-delay:.08s}.hero .sub{animation-delay:.16s}.hero .chips{animation-delay:.24s}
+  @keyframes rise{to{opacity:1; transform:none}}
+
+  /* ── 섹션 공통 ── */
+  section{padding:76px 0}
+  .sec-head{margin-bottom:40px}
+  .sec-head .eyebrow{margin-bottom:14px}
+  .sec-head h2{margin:0; font-size:clamp(24px,3.6vw,34px); font-weight:800; letter-spacing:-.03em}
+  .sec-head p{margin:12px 0 0; color:var(--muted); max-width:560px}
+  html.js .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  html.js .reveal.in{opacity:1; transform:none}
+
+  /* ── 역량 ── */
+  #capabilities{position:relative}
+  #capabilities::before{ /* 글래스 카드가 얹힐 오로라 블롭 */
+    content:""; position:absolute; z-index:0; inset:10% 0 5% 0; pointer-events:none; filter:blur(70px); opacity:.5;
+    background:
+      radial-gradient(420px 300px at 12% 30%,rgba(124,92,255,.16),transparent 70%),
+      radial-gradient(420px 300px at 85% 25%,rgba(35,184,222,.14),transparent 70%),
+      radial-gradient(420px 300px at 50% 85%,rgba(59,207,154,.13),transparent 70%);
+  }
+  .cap-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:760px){.cap-grid{grid-template-columns:1fr}}
+  .glass{
+    border-radius:var(--radius); padding:28px;
+    background:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.85);
+    box-shadow:0 1px 2px rgba(21,27,44,.04),0 12px 34px rgba(60,80,140,.07);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .glass:hover{transform:translateY(-3px); box-shadow:0 2px 4px rgba(21,27,44,.05),0 18px 44px rgba(90,90,200,.13)}
+  .cap-tag{font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.16em; margin-bottom:14px}
+  .cap-tag.v{color:#6a4df2} .cap-tag.c{color:#12758f} .cap-tag.m{color:#0f7a55} .cap-tag.k{color:#41507a}
+  .glass h3{margin:0 0 10px; font-size:19px; letter-spacing:-.02em}
+  .glass p{margin:0; font-size:15px; color:#454f68}
+
+  /* ── 방식(시그니처 파이프라인) ── */
+  #method{background:linear-gradient(180deg,var(--bg),#f3f6fc 30%,var(--bg))}
+  .method-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center}
+  @media(max-width:860px){.method-grid{grid-template-columns:1fr}}
+  .method-art{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 16px 44px rgba(60,80,140,.10)}
+  .pipeline{margin-top:36px; position:relative; padding-left:26px}
+  .pipeline::before{content:""; position:absolute; left:8px; top:10px; bottom:10px; width:2px;
+    background:linear-gradient(180deg,var(--violet),var(--cyan),var(--mint)); border-radius:2px; opacity:.35}
+  .pipeline .pulse{position:absolute; left:4.5px; top:10px; width:9px; height:9px; border-radius:50%;
+    background:var(--aurora); box-shadow:0 0 12px rgba(124,92,255,.8);
+    animation:flow 5.5s ease-in-out infinite}
+  @keyframes flow{0%{top:2%; opacity:0}8%{opacity:1}46%{top:72%}60%{top:72%}92%{top:96%; opacity:1}100%{top:98%; opacity:0}}
+  .step{position:relative; padding:0 0 26px 22px}
+  .step:last-child{padding-bottom:0}
+  .step::before{content:""; position:absolute; left:-22.5px; top:9px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2.5px solid var(--violet)}
+  .step:nth-child(3)::before{border-color:#1fa4c9}
+  .step:nth-child(4)::before{border-color:#28b985}
+  .step:nth-child(5)::before{border-color:#41507a}
+  .step .n{font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--muted)}
+  .step h3{margin:2px 0 4px; font-size:16.5px; letter-spacing:-.01em}
+  .step p{margin:0; font-size:14.5px; color:#4b5570}
+
+  /* ── 제품 ── */
   .apps{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-  @media(max-width:680px){.apps{grid-template-columns:1fr}}
-  .card{border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--bg);
-    transition:box-shadow .2s, transform .2s}
-  .card:hover{box-shadow:0 10px 30px rgba(30,50,90,.08); transform:translateY(-2px)}
-  .icon{width:56px; height:56px; border-radius:15px; display:grid; place-items:center;
-    font-size:28px; margin-bottom:14px}
-  .icon.t{background:linear-gradient(135deg,#eaf1ff,#dbe8ff)}
-  .icon.h{background:linear-gradient(135deg,#fff1e2,#ffe6cc)}
-  .card h3{margin:0 0 4px; font-size:19px}
-  .card .kind{font-size:13px; color:var(--muted); margin:0 0 12px}
-  .card p{margin:0 0 16px; color:#454d59; font-size:15px}
+  @media(max-width:760px){.apps{grid-template-columns:1fr}}
+  .app-card{border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:#fff;
+    transition:transform .25s ease, box-shadow .25s ease}
+  .app-card:hover{transform:translateY(-3px); box-shadow:0 16px 40px rgba(60,80,140,.10)}
+  .app-icon{width:52px; height:52px; border-radius:14px; display:grid; place-items:center; font-size:25px; margin-bottom:16px}
+  .app-icon.t{background:linear-gradient(135deg,#ede9ff,#e0f4ff)}
+  .app-icon.h{background:linear-gradient(135deg,#e3f9ef,#eaf3ff)}
+  .app-card h3{margin:0 0 3px; font-size:19px; letter-spacing:-.02em}
+  .app-card .kind{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--muted); margin:0 0 14px}
+  .app-card p.desc{margin:0 0 18px; font-size:14.8px; color:#454f68}
   .links{display:flex; flex-wrap:wrap; gap:8px}
-  .btn{display:inline-block; padding:8px 14px; border-radius:10px; font-size:13.5px; font-weight:600}
-  .btn.p{background:var(--brand); color:#fff}
-  .btn.p:hover{background:#4a7fe0; text-decoration:none}
-  .btn.s{background:var(--soft); color:var(--ink)}
-  .btn.s:hover{text-decoration:none; background:#eef2f7}
-  .soon{opacity:.55; pointer-events:none}
-  /* 문의 */
-  .contact{background:var(--soft); border-radius:var(--radius); padding:26px; text-align:center}
-  .contact h2{margin-bottom:8px}
-  .contact a.mail{font-size:18px; font-weight:700}
-  /* 푸터 */
-  footer{border-top:1px solid var(--line); margin-top:20px; padding:26px 0 48px; color:var(--muted); font-size:13px}
-  footer .biz{display:grid; gap:4px; margin-bottom:14px}
-  footer .biz b{color:#48505c}
-  .ph{color:#b0b8c4} /* 채워야 할 자리 */
+  .btn{display:inline-block; padding:8px 15px; border-radius:11px; font-size:13.5px; font-weight:600;
+    transition:filter .15s ease, background .15s ease}
+  .btn.p{background:var(--ink); color:#fff}
+  .btn.p:hover{filter:brightness(1.25)}
+  .btn.s{background:var(--soft); color:#3c465e}
+  .btn.s:hover{background:#e8edf7}
+  .soon{background:#edf1f8; color:#51607f; pointer-events:none}
+  .soon small{font-size:11px; font-weight:700; color:#6b7a99}
+
+  /* ── 문의 ── */
+  .contact{
+    position:relative; overflow:hidden; text-align:center; border-radius:26px; padding:56px 28px;
+    background:#fff; border:1px solid var(--line);
+  }
+  .contact::before{content:""; position:absolute; inset:-40%; pointer-events:none; filter:blur(80px); opacity:.35;
+    background:
+      radial-gradient(340px 260px at 20% 40%,rgba(124,92,255,.35),transparent 70%),
+      radial-gradient(340px 260px at 80% 60%,rgba(59,207,154,.3),transparent 70%);}
+  .contact>*{position:relative}
+  .contact .eyebrow{justify-content:center; margin-bottom:14px}
+  .contact h2{margin:0 0 10px; font-size:clamp(22px,3.4vw,30px); letter-spacing:-.03em}
+  .contact p{margin:0 0 24px; color:var(--muted)}
+  .mail-btn{display:inline-block; padding:13px 26px; border-radius:14px; background:var(--ink); color:#fff;
+    font-weight:700; font-size:15.5px; transition:filter .15s ease}
+  .mail-btn:hover{filter:brightness(1.3)}
+
+  /* ── 푸터 ── */
+  footer{border-top:1px solid var(--line); margin-top:30px; padding:34px 0 56px; color:var(--muted); font-size:13px}
+  footer .biz{display:grid; gap:4px; margin-bottom:16px}
+  footer .biz b{color:#41507a; font-weight:600}
   .foot-links{display:flex; flex-wrap:wrap; gap:14px}
+  .foot-links a{color:#4b5570; font-weight:600}
+  .foot-links a:hover{color:var(--ink)}
+  footer .copy{margin-top:16px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em}
+
+  /* 접근성·모션 */
+  a:focus-visible,.btn:focus-visible,.mail-btn:focus-visible{outline:2.5px solid var(--violet); outline-offset:3px; border-radius:8px}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .hero .eyebrow,.hero h1,.hero .sub,.hero .chips{animation:none; opacity:1; transform:none}
+    html.js .reveal{opacity:1; transform:none; transition:none}
+    .pipeline .pulse{animation:none; opacity:0}
+    .glass,.app-card{transition:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="brand"><span class="logo">EL</span> 이엘소프트 <span style="color:var(--muted);font-weight:600;font-size:15px">ELSoft</span></div>
-  </header>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="logo">EL</span> 이엘소프트 <small>ELSoft</small></a>
+    <nav class="menu" aria-label="주요 메뉴">
+      <a href="#capabilities">역량</a>
+      <a href="#method">방식</a>
+      <a href="#products">제품</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
 
   <div class="hero">
-    <span class="tag">아이와 부모를 위한 모바일 앱</span>
-    <h1>작지만 다정한 앱을<br>정성껏 만듭니다</h1>
-    <p>이엘소프트는 아이의 배움과 부모의 마음을 돕는 모바일 앱을 만드는 1인 소프트웨어 스튜디오입니다.
-       광고와 데이터는 최소로, 신뢰는 최대로.</p>
+    <div class="hero-art" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">AI-Native Software Lab</p>
+      <h1>소프트웨어를 연구하듯,<br><span class="grad">AI와 함께</span> 만듭니다</h1>
+      <p class="sub">이엘소프트는 20년의 엔지니어링 경험 위에 AI 네이티브 개발 방식을 더해,
+        설계부터 운영까지 한 사람이 팀 규모의 결과를 만들어내는 소프트웨어 연구소입니다.</p>
+      <div class="chips" aria-label="핵심 지표">
+        <span class="chip">ENGINEERING&nbsp;20Y+</span>
+        <span class="chip">SECURITY&nbsp;·&nbsp;PAYMENTS&nbsp;DOMAIN</span>
+        <span class="chip">AI&nbsp;AGENTS&nbsp;IN&nbsp;PRODUCTION</span>
+      </div>
+    </div>
   </div>
 
-  <section id="apps">
-    <h2>우리가 만든 앱</h2>
-    <p class="lead">각 앱의 개인정보처리방침·이용약관은 아래 링크에서 확인하실 수 있어요.</p>
-    <div class="apps">
-
-      <div class="card">
-        <div class="icon t">🎨</div>
-        <h3>토닥스케치</h3>
-        <p class="kind">TodakSketch · 부모를 위한 아동 그림 분석</p>
-        <p>아이가 그린 그림을 올리면 AI가 색채·심리 관점의 참고 해석과 따뜻한 양육 제언을 전해드려요.
-           (분석은 참고용이며 전문가 상담을 대신하지 않습니다.)</p>
-        <div class="links">
-          <a class="btn p soon" href="#">App Store</a>
-          <a class="btn p soon" href="#">Google Play</a>
-          <a class="btn s" href="legal/todaksketch-privacy.html">개인정보처리방침</a>
-          <a class="btn s" href="legal/todaksketch-terms.html">이용약관</a>
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Capabilities</p>
+        <h2>무엇을 잘하는가</h2>
+        <p>오래 다뤄온 문제일수록 단단하게, 새로운 도구일수록 깊게. 연구소가 축적해 온 네 가지 축입니다.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="glass reveal">
+          <div class="cap-tag v">ORCHESTRATION</div>
+          <h3>AI 네이티브 개발</h3>
+          <p>멀티에이전트 오케스트레이션과 자동화된 검증 파이프라인을 상시 운용합니다.
+             설계·구현·리뷰·배포 전 과정에 AI가 배선되어, 작은 연구소가 큰 제품의 속도와 품질을 유지합니다.</p>
+        </div>
+        <div class="glass reveal">
+          <div class="cap-tag c">RELIABILITY</div>
+          <h3>미션크리티컬 백엔드</h3>
+          <p>결제·정산·구독처럼 틀리면 안 되는 시스템을 설계하고 운영해 왔습니다.
+             무중단 전환, 장애 대응, 데이터 정합성 확보가 연구소의 주 전공입니다.</p>
+        </div>
+        <div class="glass reveal">
+          <div class="cap-tag m">SECURITY</div>
+          <h3>보안·컴플라이언스 내재화</h3>
+          <p>보안 소프트웨어 도메인에서 다진 기반 위에, 개인정보 보호와 규정 준수를
+             제품 설계 단계부터 기본값으로 둡니다. 신뢰는 나중에 붙이는 기능이 아니라 구조입니다.</p>
+        </div>
+        <div class="glass reveal">
+          <div class="cap-tag k">FULL-STACK</div>
+          <h3>풀스택 · 크로스플랫폼</h3>
+          <p>Spring Boot 백엔드부터 Vue·Nuxt 웹, Flutter 모바일, 클라우드 인프라까지
+             하나의 흐름으로 만듭니다. 경계를 넘나들어야 제품 전체가 보입니다.</p>
         </div>
       </div>
-
-      <div class="card">
-        <div class="icon h">⌨️</div>
-        <h3>어린이타자연습</h3>
-        <p class="kind">7세 한글 타자 놀이 · 광고·인터넷·수집 없음</p>
-        <p>필순 안내와 칭찬으로 한글을 익히며 타자를 배우는 아이 전용 놀이 앱.
-           광고도, 인터넷 연결도, 개인정보 수집도 없이 안심하고 쓸 수 있어요.</p>
-        <div class="links">
-          <a class="btn p soon" href="#">App Store</a>
-          <a class="btn p soon" href="#">Google Play</a>
-          <a class="btn s" href="legal/hangultyping-privacy.html">개인정보처리방침</a>
-          <a class="btn s" href="legal/hangultyping-terms.html">이용약관</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <section>
-    <div class="contact">
-      <h2>문의</h2>
-      <p style="color:var(--muted);margin:0 0 10px">앱 이용·제휴·기타 문의는 이메일로 보내주세요.</p>
-      <a class="mail" href="mailto:support@elsoftlab.com">support@elsoftlab.com</a>
+  <section id="method">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Method</p>
+        <h2>연구소가 일하는 방식</h2>
+        <p>사람이 방향을 정하고, AI 에이전트가 폭을 만들고, 자동화가 품질을 지킵니다.</p>
+      </div>
+      <div class="method-grid">
+        <div class="reveal">
+          <div class="pipeline">
+            <span class="pulse" aria-hidden="true"></span>
+            <div class="step">
+              <div class="n">STEP 01</div>
+              <h3>스펙 정제</h3>
+              <p>모호한 요구를 실행 가능한 스펙으로 깎아냅니다. 무엇을 만들지가 절반입니다.</p>
+            </div>
+            <div class="step">
+              <div class="n">STEP 02</div>
+              <h3>병렬 구현</h3>
+              <p>AI 에이전트들이 구현과 대안 탐색을 병렬로 진행합니다. 한 갈래에 갇히지 않습니다.</p>
+            </div>
+            <div class="step">
+              <div class="n">STEP 03</div>
+              <h3>교차 검증</h3>
+              <p>자동화된 리뷰·테스트·상호 검증이 결과물을 걸러냅니다. 품질은 공정에 심습니다.</p>
+            </div>
+            <div class="step">
+              <div class="n">STEP 04</div>
+              <h3>릴리스와 운영</h3>
+              <p>최종 판단은 사람이 합니다. 출시 이후의 관찰과 개선까지가 개발입니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="method-art reveal">
+          <img src="assets/method.jpg" alt="AI 에이전트 오케스트레이션을 형상화한 밝은 추상 이미지 — 빛의 노드와 연결선" loading="lazy" width="1200" height="896">
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer>
+  <section id="products">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Products</p>
+        <h2>직접 만들고 운영하는 제품</h2>
+        <p>연구한 방식은 제품으로 증명합니다. 각 제품의 개인정보처리방침과 이용약관을 함께 공개합니다.</p>
+      </div>
+      <div class="apps">
+        <div class="app-card reveal">
+          <div class="app-icon t" aria-hidden="true">🎨</div>
+          <h3>토닥스케치</h3>
+          <p class="kind">TODAKSKETCH · 아동 그림 AI 분석 · 부모용</p>
+          <p class="desc">아이의 그림을 AI가 색채·심리 관점에서 해석해 양육에 참고할 수 있는 정보를 제공합니다.
+             분석 결과는 참고용이며 전문가 상담을 대신하지 않습니다.</p>
+          <div class="links">
+            <span class="btn soon">App Store<small> · 출시 예정</small></span>
+            <span class="btn soon">Google Play<small> · 출시 예정</small></span>
+            <a class="btn s" href="/legal/todaksketch-privacy.html">개인정보처리방침</a>
+            <a class="btn s" href="/legal/todaksketch-terms.html">이용약관</a>
+          </div>
+        </div>
+        <div class="app-card reveal">
+          <div class="app-icon h" aria-hidden="true">⌨️</div>
+          <h3>어린이타자연습</h3>
+          <p class="kind">HANGUL TYPING · 한글 타자 학습 · 아동용</p>
+          <p class="desc">광고·인터넷 연결·데이터 수집 없이 동작하는 오프라인 한글 타자 학습 앱입니다.
+             필순 안내와 단계별 연습으로 처음 한글을 배우는 아이 눈높이에 맞춰 설계했습니다.</p>
+          <div class="links">
+            <span class="btn soon">App Store<small> · 출시 예정</small></span>
+            <span class="btn soon">Google Play<small> · 출시 예정</small></span>
+            <a class="btn s" href="/legal/hangultyping-privacy.html">개인정보처리방침</a>
+            <a class="btn s" href="/legal/hangultyping-terms.html">이용약관</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>함께 만들 것이 있다면</h2>
+        <p>제품 이용, 프로젝트·제휴, 기타 문의를 환영합니다. 이메일을 남겨주시면 답신드립니다.</p>
+        <a class="mail-btn" href="mailto:support@elsoftlab.com">support@elsoftlab.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
     <div class="biz">
       <div><b>상호</b> 이엘소프트(ELSoft)</div>
       <div><b>대표자</b> <span>이현미</span></div>
@@ -139,12 +381,24 @@
       <div><b>이메일</b> support@elsoftlab.com</div>
     </div>
     <div class="foot-links">
-      <a href="legal/todaksketch-privacy.html">토닥스케치 개인정보처리방침</a>
-      <a href="legal/hangultyping-privacy.html">어린이타자연습 개인정보처리방침</a>
+      <a href="/legal/todaksketch-privacy.html">토닥스케치 개인정보처리방침</a>
+      <a href="/legal/hangultyping-privacy.html">어린이타자연습 개인정보처리방침</a>
     </div>
-    <p style="margin-top:14px">© 2026 이엘소프트(ELSoft). All rights reserved.</p>
-  </footer>
+    <p class="copy">© 2026 ELSOFT — AI-NATIVE SOFTWARE LAB. ALL RIGHTS RESERVED.</p>
+  </div>
+</footer>
 
-</div>
+<script>
+  // 스크롤 리빌(모션 최소화 설정 시 CSS에서 무효화됨). 어떤 이유로든 실패하면 전부 표시.
+  try {
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } catch (err) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
 </body>
 </html>

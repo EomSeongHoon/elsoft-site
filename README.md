@@ -8,6 +8,9 @@
 ```
 web/
   index.html                     회사 소개 (링크는 상대경로 → 서브경로/커스텀도메인 모두 호환)
+  assets/
+    hero.jpg                     히어로 배경(오로라 추상, AI 생성)
+    method.jpg                   '일하는 방식' 섹션 이미지(AI 생성)
   .nojekyll                      GitHub의 Jekyll 처리 우회(파일 그대로 서빙)
   legal/
     hangultyping-privacy.html    어린이타자연습 개인정보처리방침
