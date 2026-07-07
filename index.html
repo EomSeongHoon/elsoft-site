@@ -11,6 +11,9 @@
 <meta property="og:description" content="20년의 엔지니어링 경험 위에 AI 네이티브 개발 방식을 더한 소프트웨어 연구소.">
 <meta property="og:image" content="https://elsoftlab.com/assets/hero.jpg">
 <meta property="og:type" content="website">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js')</script><!-- 리빌 숨김은 복원 수단(IO)이 있을 때만 -->
 <style>
   :root{
@@ -49,11 +52,7 @@
   }
   .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
   .brand{display:flex; align-items:center; gap:11px; font-weight:800; font-size:18px; letter-spacing:-.02em}
-  .logo{
-    width:34px; height:34px; border-radius:10px; background:var(--aurora);
-    display:grid; place-items:center; color:#fff; font-weight:800; font-size:14px;
-    font-family:var(--mono); letter-spacing:0;
-  }
+  .logo{width:34px; height:34px; display:block}
   .brand small{color:var(--muted); font-weight:600; font-size:13px}
   nav.menu{display:flex; gap:26px; font-size:14.5px; font-weight:600; color:var(--muted)}
   nav.menu a:hover{color:var(--ink)}
@@ -61,7 +60,7 @@
     nav.menu{gap:13px; font-size:13px}
     .brand{font-size:16px; gap:8px}
     .brand small{display:none}
-    .logo{width:30px; height:30px; font-size:12.5px}
+    .logo{width:30px; height:30px}
   }
 
   /* ── 히어로 ── */
@@ -216,7 +215,7 @@
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="logo">EL</span> 이엘소프트 <small>ELSoft</small></a>
+    <a class="brand" href="#top"><svg class="logo" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C5CFF"/><stop offset=".55" stop-color="#23B8DE"/><stop offset="1" stop-color="#3BCF9A"/></linearGradient></defs><rect width="512" height="512" rx="115" fill="url(#lg)"/><g fill="#fff"><path d="M111 144h130v44H155v46h74v44h-74v46h86v44H111z"/><path d="M281 144h44v180h76v44H281z"/></g></svg> 이엘소프트 <small>ELSoft</small></a>
     <nav class="menu" aria-label="주요 메뉴">
       <a href="#capabilities">역량</a>
       <a href="#method">방식</a>
@@ -313,7 +312,7 @@
           </div>
         </div>
         <div class="method-art reveal">
-          <img src="assets/method.jpg" alt="AI 에이전트 오케스트레이션을 형상화한 밝은 추상 이미지 — 빛의 노드와 연결선" loading="lazy" width="1200" height="896">
+          <img src="assets/method.jpg" alt="하네스 엔지니어링을 형상화한 이미지 — 허브에서 갈라진 전선 다발이 병렬 에이전트 모듈을 지나 검증 게이트를 통과해 하나의 릴리스로 수렴" loading="lazy" width="1200" height="896">
         </div>
       </div>
     </div>
