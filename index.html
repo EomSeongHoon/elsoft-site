@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- 이엘소프트(ELSoft) 회사 원페이지. elsoftlab.com 루트에 그대로 호스팅.
+     자체 완결형(외부 리소스 없음). 스토어/개인정보처리방침 링크는 확정 후 href 교체. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이엘소프트 · ELSoft</title>
+<meta name="description" content="이엘소프트(ELSoft) — 아이와 부모를 위한 따뜻한 모바일 앱을 만듭니다.">
+<style>
+  :root{
+    --ink:#232a33; --muted:#697586; --line:#e7ebf0; --bg:#ffffff; --soft:#f6f8fb;
+    --brand:#5b8def; --brand2:#f4a259; --accent:#7cc6a6; --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; color:var(--ink); background:var(--bg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",
+      "Noto Sans KR",Roboto,"Malgun Gothic",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brand); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px}
+  /* 헤더 */
+  header{padding:26px 0}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:800; font-size:20px; letter-spacing:-.2px}
+  .logo{width:38px; height:38px; border-radius:11px;
+    background:linear-gradient(135deg,var(--brand),var(--accent));
+    display:grid; place-items:center; color:#fff; font-weight:800; font-size:17px}
+  /* 히어로 */
+  .hero{padding:48px 0 30px; text-align:center}
+  .hero h1{font-size:clamp(28px,5vw,42px); line-height:1.25; margin:0 0 14px; letter-spacing:-.5px}
+  .hero p{font-size:clamp(16px,2.4vw,19px); color:var(--muted); margin:0 auto; max-width:620px}
+  .tag{display:inline-block; margin-bottom:18px; padding:6px 14px; border-radius:999px;
+    background:var(--soft); color:var(--muted); font-size:13px; font-weight:600}
+  /* 섹션 */
+  section{padding:34px 0}
+  h2{font-size:22px; letter-spacing:-.3px; margin:0 0 18px}
+  .lead{color:var(--muted); margin:-8px 0 22px}
+  /* 앱 카드 */
+  .apps{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:680px){.apps{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--bg);
+    transition:box-shadow .2s, transform .2s}
+  .card:hover{box-shadow:0 10px 30px rgba(30,50,90,.08); transform:translateY(-2px)}
+  .icon{width:56px; height:56px; border-radius:15px; display:grid; place-items:center;
+    font-size:28px; margin-bottom:14px}
+  .icon.t{background:linear-gradient(135deg,#eaf1ff,#dbe8ff)}
+  .icon.h{background:linear-gradient(135deg,#fff1e2,#ffe6cc)}
+  .card h3{margin:0 0 4px; font-size:19px}
+  .card .kind{font-size:13px; color:var(--muted); margin:0 0 12px}
+  .card p{margin:0 0 16px; color:#454d59; font-size:15px}
+  .links{display:flex; flex-wrap:wrap; gap:8px}
+  .btn{display:inline-block; padding:8px 14px; border-radius:10px; font-size:13.5px; font-weight:600}
+  .btn.p{background:var(--brand); color:#fff}
+  .btn.p:hover{background:#4a7fe0; text-decoration:none}
+  .btn.s{background:var(--soft); color:var(--ink)}
+  .btn.s:hover{text-decoration:none; background:#eef2f7}
+  .soon{opacity:.55; pointer-events:none}
+  /* 문의 */
+  .contact{background:var(--soft); border-radius:var(--radius); padding:26px; text-align:center}
+  .contact h2{margin-bottom:8px}
+  .contact a.mail{font-size:18px; font-weight:700}
+  /* 푸터 */
+  footer{border-top:1px solid var(--line); margin-top:20px; padding:26px 0 48px; color:var(--muted); font-size:13px}
+  footer .biz{display:grid; gap:4px; margin-bottom:14px}
+  footer .biz b{color:#48505c}
+  .ph{color:#b0b8c4} /* 채워야 할 자리 */
+  .foot-links{display:flex; flex-wrap:wrap; gap:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand"><span class="logo">EL</span> 이엘소프트 <span style="color:var(--muted);font-weight:600;font-size:15px">ELSoft</span></div>
+  </header>
+
+  <div class="hero">
+    <span class="tag">아이와 부모를 위한 모바일 앱</span>
+    <h1>작지만 다정한 앱을<br>정성껏 만듭니다</h1>
+    <p>이엘소프트는 아이의 배움과 부모의 마음을 돕는 모바일 앱을 만드는 1인 소프트웨어 스튜디오입니다.
+       광고와 데이터는 최소로, 신뢰는 최대로.</p>
+  </div>
+
+  <section id="apps">
+    <h2>우리가 만든 앱</h2>
+    <p class="lead">각 앱의 개인정보처리방침·이용약관은 아래 링크에서 확인하실 수 있어요.</p>
+    <div class="apps">
+
+      <div class="card">
+        <div class="icon t">🎨</div>
+        <h3>토닥스케치</h3>
+        <p class="kind">TodakSketch · 부모를 위한 아동 그림 분석</p>
+        <p>아이가 그린 그림을 올리면 AI가 색채·심리 관점의 참고 해석과 따뜻한 양육 제언을 전해드려요.
+           (분석은 참고용이며 전문가 상담을 대신하지 않습니다.)</p>
+        <div class="links">
+          <a class="btn p soon" href="#">App Store</a>
+          <a class="btn p soon" href="#">Google Play</a>
+          <a class="btn s" href="legal/todaksketch-privacy.html">개인정보처리방침</a>
+          <a class="btn s" href="legal/todaksketch-terms.html">이용약관</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon h">⌨️</div>
+        <h3>어린이타자연습</h3>
+        <p class="kind">7세 한글 타자 놀이 · 광고·인터넷·수집 없음</p>
+        <p>필순 안내와 칭찬으로 한글을 익히며 타자를 배우는 아이 전용 놀이 앱.
+           광고도, 인터넷 연결도, 개인정보 수집도 없이 안심하고 쓸 수 있어요.</p>
+        <div class="links">
+          <a class="btn p soon" href="#">App Store</a>
+          <a class="btn p soon" href="#">Google Play</a>
+          <a class="btn s" href="legal/hangultyping-privacy.html">개인정보처리방침</a>
+          <a class="btn s" href="legal/hangultyping-terms.html">이용약관</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="contact">
+      <h2>문의</h2>
+      <p style="color:var(--muted);margin:0 0 10px">앱 이용·제휴·기타 문의는 이메일로 보내주세요.</p>
+      <a class="mail" href="mailto:support@elsoftlab.com">support@elsoftlab.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="biz">
+      <div><b>상호</b> 이엘소프트(ELSoft)</div>
+      <div><b>대표자</b> <span>이현미</span></div>
+      <div><b>사업자등록번호</b> <span>579-20-01949</span></div>
+      <div><b>사업장 주소</b> <span>경기도 남양주시 별내3로 322, 402호 (별내동, 스카이프라자)</span></div>
+      <div><b>통신판매업 신고번호</b> <span>통신판매업 신고 면제 대상 (직전년도 거래 50회 미만)</span></div>
+      <div><b>이메일</b> support@elsoftlab.com</div>
+    </div>
+    <div class="foot-links">
+      <a href="legal/todaksketch-privacy.html">토닥스케치 개인정보처리방침</a>
+      <a href="legal/hangultyping-privacy.html">어린이타자연습 개인정보처리방침</a>
+    </div>
+    <p style="margin-top:14px">© 2026 이엘소프트(ELSoft). All rights reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>
