@@ -21,6 +21,8 @@
     --violet:#7c5cff; --cyan:#23b8de; --mint:#3bcf9a;
     --aurora:linear-gradient(100deg,var(--violet),var(--cyan) 55%,var(--mint));
     --radius:20px;
+    /* 스페이싱 스케일(8pt 그리드): 4·8·12·16·24·32·48·64·96 */
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
     --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
       "Apple SD Gothic Neo","Noto Sans KR","Segoe UI","Malgun Gothic",sans-serif;
     --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
@@ -33,7 +35,8 @@
   }
   a{color:inherit; text-decoration:none}
   img{max-width:100%; height:auto; display:block}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 var(--s6)}
+  @media(max-width:640px){.wrap{padding:0 var(--s5)}}
 
   /* ── 유틸리티(랩 레지스터) ── */
   .eyebrow{
@@ -50,7 +53,8 @@
     position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
     background:rgba(250,251,254,.78); border-bottom:1px solid rgba(230,234,244,.7);
   }
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding-block:var(--s3)}
+  /* ⚠️ padding 단축속성 금지 — .wrap의 좌우 패딩을 덮어쓴다 */
   .brand{display:flex; align-items:center; gap:11px; font-weight:800; font-size:18px; letter-spacing:-.02em}
   .logo{width:34px; height:34px; display:block}
   .brand small{color:var(--muted); font-weight:600; font-size:13px}
@@ -64,7 +68,7 @@
   }
 
   /* ── 히어로 ── */
-  .hero{position:relative; padding:92px 0 72px; overflow:hidden}
+  .hero{position:relative; padding:var(--s9) 0 var(--s8); overflow:hidden}
   .hero-art{
     position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:url("assets/hero.jpg") center top/cover no-repeat;
@@ -96,8 +100,9 @@
   @keyframes rise{to{opacity:1; transform:none}}
 
   /* ── 섹션 공통 ── */
-  section{padding:76px 0}
-  .sec-head{margin-bottom:40px}
+  section{padding:var(--s7) 0}
+  @media(max-width:640px){section{padding:var(--s6) 0}}
+  .sec-head{margin-bottom:var(--s6)}
   .sec-head .eyebrow{margin-bottom:14px}
   .sec-head h2{margin:0; font-size:clamp(24px,3.6vw,34px); font-weight:800; letter-spacing:-.03em}
   .sec-head p{margin:12px 0 0; color:var(--muted); max-width:560px}
@@ -113,10 +118,10 @@
       radial-gradient(420px 300px at 85% 25%,rgba(35,184,222,.14),transparent 70%),
       radial-gradient(420px 300px at 50% 85%,rgba(59,207,154,.13),transparent 70%);
   }
-  .cap-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .cap-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:var(--s4)}
   @media(max-width:760px){.cap-grid{grid-template-columns:1fr}}
   .glass{
-    border-radius:var(--radius); padding:28px;
+    border-radius:var(--radius); padding:var(--s5);
     background:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.85);
     box-shadow:0 1px 2px rgba(21,27,44,.04),0 12px 34px rgba(60,80,140,.07);
     backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
@@ -130,7 +135,7 @@
 
   /* ── 방식(시그니처 파이프라인) ── */
   #method{background:linear-gradient(180deg,var(--bg),#f3f6fc 30%,var(--bg))}
-  .method-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center}
+  .method-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(var(--s6),5vw,var(--s7)); align-items:center}
   @media(max-width:860px){.method-grid{grid-template-columns:1fr}}
   .method-art{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
     box-shadow:0 16px 44px rgba(60,80,140,.10)}
@@ -153,9 +158,9 @@
   .step p{margin:0; font-size:14.5px; color:#4b5570}
 
   /* ── 제품 ── */
-  .apps{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .apps{display:grid; grid-template-columns:1fr 1fr; gap:var(--s4)}
   @media(max-width:760px){.apps{grid-template-columns:1fr}}
-  .app-card{border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:#fff;
+  .app-card{border:1px solid var(--line); border-radius:var(--radius); padding:var(--s5); background:#fff;
     transition:transform .25s ease, box-shadow .25s ease}
   .app-card:hover{transform:translateY(-3px); box-shadow:0 16px 40px rgba(60,80,140,.10)}
   .app-icon{width:52px; height:52px; border-radius:14px; display:grid; place-items:center; font-size:25px; margin-bottom:16px}
@@ -176,7 +181,7 @@
 
   /* ── 문의 ── */
   .contact{
-    position:relative; overflow:hidden; text-align:center; border-radius:26px; padding:56px 28px;
+    position:relative; overflow:hidden; text-align:center; border-radius:26px; padding:var(--s7) var(--s5);
     background:#fff; border:1px solid var(--line);
   }
   .contact::before{content:""; position:absolute; inset:-40%; pointer-events:none; filter:blur(80px); opacity:.35;
@@ -192,8 +197,8 @@
   .mail-btn:hover{filter:brightness(1.3)}
 
   /* ── 푸터 ── */
-  footer{border-top:1px solid var(--line); margin-top:30px; padding:34px 0 56px; color:var(--muted); font-size:13px}
-  footer .biz{display:grid; gap:4px; margin-bottom:16px}
+  footer{border-top:1px solid var(--line); margin-top:var(--s6); padding:var(--s6) 0 var(--s7); color:var(--muted); font-size:13px}
+  footer .biz{display:grid; gap:var(--s1); margin-bottom:var(--s4)}
   footer .biz b{color:#41507a; font-weight:600}
   .foot-links{display:flex; flex-wrap:wrap; gap:14px}
   .foot-links a{color:#4b5570; font-weight:600}
