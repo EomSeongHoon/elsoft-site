@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elsoftlab.com/sitemap.xml
