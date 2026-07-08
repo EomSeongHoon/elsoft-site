@@ -185,9 +185,8 @@
     display:flex; flex-direction:column;
     transition:transform .25s ease, box-shadow .25s ease}
   .app-card:hover{transform:translateY(-3px); box-shadow:0 16px 40px rgba(60,80,140,.10)}
-  .app-icon{width:52px; height:52px; border-radius:14px; display:grid; place-items:center; font-size:30px; margin-bottom:16px}
-  .app-icon.t{background:linear-gradient(135deg,#ede9ff,#e0f4ff)}
-  .app-icon.h{background:linear-gradient(135deg,#cff0df,#d8e9ff)}
+  .app-icon{width:52px; height:52px; border-radius:14px; object-fit:cover; display:block;
+    border:1px solid var(--line); margin-bottom:16px}
   .app-card h3{margin:0 0 3px; font-size:19px; letter-spacing:-.02em}
   .app-card .kind{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--muted); margin:0 0 14px}
   .app-card p.desc{margin:0 0 18px; font-size:14.8px; color:#454f68}
@@ -362,7 +361,7 @@
       </div>
       <div class="apps">
         <div class="app-card reveal">
-          <div class="app-icon t" aria-hidden="true">🎨</div>
+          <img class="app-icon" src="assets/icon-todak.webp" alt="" width="52" height="52" loading="lazy">
           <h3>토닥스케치</h3>
           <p class="kind">TODAKSKETCH · 아동 그림 AI 분석 · 부모용</p>
           <p class="desc">아이의 그림을 AI가 색채·심리 관점에서 해석해 양육에 참고할 수 있는 정보를 제공합니다.
@@ -377,7 +376,7 @@
           </div>
         </div>
         <div class="app-card reveal">
-          <div class="app-icon h" aria-hidden="true">⌨️</div>
+          <img class="app-icon" src="assets/icon-hangul.webp" alt="" width="52" height="52" loading="lazy">
           <h3>어린이타자연습</h3>
           <p class="kind">HANGUL TYPING · 한글 타자 학습 · 아동용</p>
           <p class="desc">광고·인터넷 연결·데이터 수집 없이 동작하는 오프라인 한글 타자 학습 앱입니다.
